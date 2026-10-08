@@ -126,14 +126,6 @@ Star-style model with a shared date table:
 
 ---
 
-## Notes / Known Issues
-
-- The card table's **"Total YTD"** row sums all periods in the data (Oct 2021 onward, ~$7.73M), not just 2024 – consider renaming it to "Total" or filtering it to the current year.
-- Currency formatting in the data view uses Indian digit grouping (e.g. `$1,74,500.94`); set the report locale to English (US/UK) for standard `$174,500.94` formatting.
-- Merchant numbers in the source data are stored as numbers and display in scientific notation – change the type to Text.
-- **Privacy:** this is real business data. Before making the repo public, remove or anonymise merchant numbers and confirm you have permission to share the figures. Consider using a private repo.
-
----
 
 ## Author
 
