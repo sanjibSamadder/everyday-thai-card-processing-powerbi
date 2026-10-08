@@ -177,36 +177,12 @@ cd everyday-thai-card-processing-powerbi
 **4. Update for a new month** by adding the new statement rows to the source and
 clicking **Refresh**. A static copy of the report is in `Dashboard.pdf`.
 
-## Limitations
-
-- **The "Total YTD" row in the card table sums every period** in the data (about
-  $7.73M since October 2021), not 2024 only. Rename it or filter it to the current year.
-- **Expected 2024 values are projections,** not a statistically validated forecast.
-  Review the `ExpectedAmny24` and `ExpQTN24` measures before relying on them.
-- **The card table is not filtered to one year,** so it cannot be compared directly
-  with the YTD cards above it.
-- **Card-level detail starts in October 2021,** while the monthly summary starts in
-  January 2021, so card-type trends have a shorter history.
-- **Data view formatting uses Indian digit grouping** (for example `$1,74,500.94`).
-  Set the report locale to English for standard formatting.
-- **Merchant numbers are stored as numbers** and display in scientific notation.
-  Change the column type to Text.
 
 ## Provenance & License
 
 **Source:** monthly card-processing statements from a restaurant business, taken from
-the author's work. Confirm that you have permission to share the figures, and remove or
-anonymise merchant numbers before making the repository public.
+the author's work.
 
-**License:** not yet specified. Add a licence file before inviting reuse of the data.
-
-## Future Work
-
-- [ ] Add a card-mix view showing the share of keyed vs swiped volume over time
-- [ ] Add a fee-saving scenario that shifts keyed volume to swipe
-- [ ] Replace the expected-year projection with a validated forecast
-- [ ] Add a month selector so any month can be the reporting month
-- [ ] Publish a version to Power BI Service with scheduled refresh
 
 ## Author
 
