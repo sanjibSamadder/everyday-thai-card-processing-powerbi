@@ -1,65 +1,99 @@
-# Everyday Thai – Card Processing Monthly Report (Power BI)
+![Dashboard](images/dashboard.png)
 
-An interactive Power BI dashboard that tracks credit card processing performance for a restaurant business (**Everyday Thai**). It turns monthly merchant-statement data into a one-page report covering sales volume, transaction counts, processing fees and the **effective rate** the business actually pays.
+<div align="center">
 
-The current report covers **October 2021 – April 2024** (April 2024 is the reporting month).
+# Card Processing Performance Dashboard
 
----
+### A Monthly Power BI Report on Sales, Transactions, Fees and Effective Rate
 
-## Dashboard Preview
+![Power BI](https://img.shields.io/badge/Power%20BI-Dashboard-F2C811?logo=powerbi&logoColor=black)
+![DAX](https://img.shields.io/badge/DAX-MTD%20%7C%20YTD%20%7C%20Prior%20year-E66C37)
+![Period](https://img.shields.io/badge/Period-Oct%202021%20to%20Apr%202024-0F172A)
+![Model](https://img.shields.io/badge/Model-Star%20schema-0E9F9A)
 
-### Report Page
-![Everyday Thai monthly card processing dashboard](images/dashboard.png)
+**One page shows what was processed, what it cost, and which card types cost the most**
 
-### Data Model
-![Data model showing Card Processing, T1, Measure and Sheet1 tables](images/data_model.png)
-
----
-
-## Business Questions Answered
-
-- How much did we process this month, and how does the year-to-date compare with last year?
-- Are we on track for the full year (expected 2024 totals vs. 2021–2023)?
-- How many transactions are we processing, and is volume trending up or down?
-- What is our effective processing rate, and is it improving?
-- Which card types (V/MC/D, Amex, swiped vs. keyed) cost us the most?
+</div>
 
 ---
 
-## Dashboard Contents
+## Overview
 
-### KPI Cards (Current Month – April 2024)
-| KPI | Value |
+This project turns monthly merchant-statement data from a restaurant (Everyday Thai)
+into a one-page Power BI report for the April 2024 reporting month.
+
+Sales totals alone do not show what card payments really cost. The owner needs to know
+how this year compares with last year, whether transaction volume is holding up, what
+share of each sale goes to processing fees, and which card types push that cost up.
+The report answers these with year-over-year comparisons, trend lines and a card-level
+breakdown table.
+
+![Data model](images/data_model.png)
+
+## Key Result
+
+> In April 2024 the business processed **$173.61K across 3,664 transactions** at an
+> **effective rate of 2.41%**. Year to date, sales are up **0.49%** on last year while
+> fees are up **2.17%**, so fees are growing faster than sales.
+
+| April 2024 (month to date) | Value |
 |---|---|
-| Current Amount (MTD) | $173.61K |
-| Current Count (MTD) | 3,664 transactions |
-| Effective Rate | 2.41% |
-| Avg. Sales per Transaction | $47.38 |
-| Avg. Fee per Transaction | $1.14 |
+| Amount processed | $173.61K |
+| Transactions | 3,664 |
+| Effective rate | 2.41% |
+| Average sale per transaction | $47.38 |
+| Average fee per transaction | $1.14 |
 
-### Sections
-1. **Amount** – YTD sales (782.03K, +0.49% vs. last year), full-year totals for 2021–2023 ($2.24M / $2.38M / $2.32M) and an **Expected 2024** projection ($2.35M). A clustered column chart compares each month across 2021–2024, with 2024 highlighted.
-2. **Quantity** – YTD transaction count (17.07K, -0.65% vs. LY), yearly totals (55K / 53K / 51K), expected 2024 (51.22K) and a stepped area chart of monthly volume since Jan 2021.
-3. **Fee** – YTD fees ($18.85K, +2.17% vs. LY) with a monthly line chart and trend line.
-4. **Effective Rate** – monthly effective rate for 2024 (2.40%–2.42%) with trend line.
-5. **Card breakdown table** – payments ($), payments (#), fees collected, refunds and effective rate per card type:
+| Year to date (Jan to Apr 2024) | 2024 | Last year | Change |
+|---|---|---|---|
+| Amount | $782.03K | $778.19K | +0.49% |
+| Transactions | 17.07K | 17.18K | -0.65% |
+| Fees | $18.85K | $18.45K | +2.17% |
 
-| Card | Effective Rate |
-|---|---|
-| V/MC/D | 2.34% |
-| V/MC/D Swipe | 2.28% |
-| V/MC/D (Keyed) | 3.69% |
-| Amex | 3.57% |
-| Amex Swipe | 3.56% |
-| Amex (Keyed) | 4.18% |
+| Full-year view | Amount | Transactions |
+|---|---|---|
+| 2021 | $2.24M | 55K |
+| 2022 | $2.38M | 53K |
+| 2023 | $2.32M | 51K |
+| Expected 2024 | $2.35M | 51.22K |
 
-**Key insight:** keyed-in transactions are far more expensive than swiped ones (3.69% vs. 2.28% for V/MC/D), so shifting keyed volume to swipe/tap is the clearest way to reduce fees.
+The expected 2024 figures come from the `ExpectedAmny24` and `ExpQTN24` measures.
 
----
+## Main Findings
+
+1. **Fees are growing faster than sales.** Year-to-date amount is up 0.49% and
+   transactions are down 0.65%, yet fees are up 2.17%.
+2. **Keyed-in cards are the most expensive.** V/MC/D keyed transactions cost 3.69%
+   against 2.28% when swiped. Amex keyed costs 4.18% against 3.56% swiped.
+3. **Keyed volume is small but costly.** Keyed cards are about 6% of all volume
+   processed but about 9% of all fees collected.
+4. **Amex costs more than V/MC/D across the board.** Amex sits at 3.56% to 4.18%,
+   while V/MC/D sits at 2.28% to 3.69%.
+5. **The effective rate is stable month to month.** In 2024 it moved only between
+   2.40% and 2.42%, so the cost is driven by card mix, not by monthly swings.
+6. **Transaction counts are drifting down while average sale is steady.** Yearly
+   volume went from 55K to 53K to 51K, so sales are held up by ticket size.
+
+**Back-of-envelope saving:** if V/MC/D keyed volume ($451,983 in the data) had been
+charged at the standard V/MC/D rate of 2.34%, fees would have been about $6,100 lower.
+This is illustrative only and assumes keyed sales could have been swiped.
+
+## Dashboard Components
+
+| # | Section | What it shows | Key measures |
+|---|---|---|---|
+| 1 | **KPI cards** | Current amount, count, effective rate, average sale, average fee | `MTD_Amount`, `Effective Rate` |
+| 2 | **Amount** | YTD vs last year, 2021 to 2023 totals, expected 2024, monthly columns by year | `ExpectedAmny24` |
+| 3 | **Quantity** | YTD vs last year, yearly totals, expected 2024, monthly stepped area chart | `ExpQTN24` |
+| 4 | **Fee** | YTD fees vs last year, monthly line chart with trend line | Fees from `T1` |
+| 5 | **Effective Rate** | Monthly rate for 2024 with trend line | `Effective Rate` |
+| 6 | **Card table** | Payments, count, fees, refunds and rate by card type | `Card Processing` |
+
+**Card types tracked:** V/MC/D, V/MC/D Swipe, V/MC/D (Keyed), Amex, Amex Swipe, Amex (Keyed).
 
 ## Data Model
 
-Star-style model with a shared date table:
+A star-style model with one shared date table.
 
 ```
             Sheet1 (Date)
@@ -69,72 +103,124 @@ Star-style model with a shared date table:
      Card Processing     T1
 ```
 
-| Table | Purpose |
+| Table | Role | Contents |
+|---|---|---|
+| **Card Processing** | Fact table, 159 rows | Statement date, card type, rate, payments (# and $), refunds (# and $), fees collected, fee adjustments, net |
+| **T1** | Monthly summary fact table | Date, month, quarter, year, payments, refunds, fees, net deposit |
+| **Sheet1** | Date dimension | `Date`, related one-to-many to both fact tables |
+| **Measure** | Measure table | `Effective Rate`, `MTD_Amount`, `ExpectedAmny24`, `ExpQTN24` and others |
+
+**Metric definitions**
+
+| Metric | Definition |
 |---|---|
-| **Card Processing** | Fact table (159 rows) – one row per statement month per card type. Columns include Merchant Number, Statement Date, Card Type, Card Type 2 (cleaned label), Rate, Payments (#), Payments ($), Refunds (#), Refunds ($), Fees Collected, Fee Adjustments, Fees Adjusted, Net, Month, Check total. |
-| **T1** | Monthly summary fact table – Date, Statement Date, Month, Quarter, Year, Payments, Refunds, Fees, Net Deposit. |
-| **Sheet1** | Date dimension used to filter both fact tables. Relationships are one-to-many (single direction) on `Date`. |
-| **Measure** | Holds the DAX measures, including `Effective Rate`, `MTD_Amount`, `ExpectedAmny24` and `ExpQTN24`. |
+| Effective rate | Fees collected divided by payments ($) |
+| Average sale per transaction | Payments ($) divided by payments (#) |
+| Average fee per transaction | Fees collected divided by payments (#) |
 
-### Key Metric Definitions
-- **Effective Rate** = Fees Collected ÷ Payments ($)
-- **Avg. Sales per Transaction** = Payments ($) ÷ Payments (#)
-- **Avg. Fee per Transaction** = Fees Collected ÷ Payments (#)
-- **Expected Y24** = projected full-year 2024 amount / quantity (`ExpectedAmny24`, `ExpQTN24`)
+**Source rate structure** (from the statement data)
 
-### Source Rate Structure (from the data)
-| Card Type | Rate |
+| Card type | Rate |
 |---|---|
 | V/MC/D | 1.95% + $0.15 |
 | V/MC/D (Keyed) | 3.2% + $0.15 |
 | Amex | 3.29% + $0.15 |
 
----
+## Power BI Skills Shown
+
+| Skill | Where it is used |
+|---|---|
+| Star-schema data modelling | Date table linked to two fact tables |
+| DAX time intelligence | MTD, YTD and last-year comparisons |
+| Projection measures | Expected 2024 amount and quantity |
+| KPI cards with variance indicators | Header cards and YTD blocks |
+| Trend lines and conditional highlighting | Fee and rate charts, 2024 bars highlighted |
+| Data cleaning in Power Query | Card type labels (`Card Type` to `Card Type 2`) |
+| Financial analysis | Effective rate and fee-mix analysis |
+
+## Dataset
+
+| Property | Value |
+|---|---|
+| Card-level records | 159 rows (statement month and card type) |
+| Card-level period | October 2021 to April 2024 |
+| Monthly summary period | January 2021 onward (`T1`) |
+| Source | Monthly card-processing merchant statements |
 
 ## Repository Structure
 
 ```
-├── Everyday Thai Till April 2024 Updated.pbix   # Power BI report (data model, DAX, visuals)
-├── Dashboard.pdf                                # Exported dashboard (PDF)
+.
+├── Everyday Thai Till April 2024 Updated.pbix   # Power BI report
+├── Dashboard.pdf                                # Exported dashboard
 ├── images/
-│   ├── dashboard.png                            # Dashboard screenshot
-│   └── data_model.png                           # Data model / relationships screenshot
+│   ├── dashboard.png                            # Screenshot used in this README
+│   └── data_model.png                           # Data model screenshot
 └── README.md
 ```
 
----
+## Getting Started
 
-## How to Use
+**1. Clone the repository**
 
-1. Install [Power BI Desktop](https://powerbi.microsoft.com/desktop/) (free, Windows).
-2. Clone this repository:
-   ```bash
-   git clone https://github.com/<your-username>/<repo-name>.git
-   ```
-3. Open `Everyday Thai Till April 2024 Updated.pbix`. A static copy of the report is also available in [`Dashboard.pdf`](Dashboard.pdf).
-4. If the data source path has changed, go to **Home → Transform data → Data source settings** and point it to your local file.
-5. To update for a new month, add the new statement rows to the source and click **Refresh**.
+```bash
+git clone https://github.com/sanjibSamadder/everyday-thai-card-processing-powerbi.git
+cd everyday-thai-card-processing-powerbi
+```
 
----
+**2. Open the report** in [Power BI Desktop](https://powerbi.microsoft.com/desktop/)
+(free, Windows): open `Everyday Thai Till April 2024 Updated.pbix`.
 
-## Skills Demonstrated
+**3. Point to your data.** If the source path has changed, go to
+**Home > Transform data > Data source settings** and update it.
 
-- Data modelling (fact tables, date dimension, one-to-many relationships)
-- DAX measures (MTD, YTD, prior-year comparison, forecasting)
-- KPI cards, trend lines, conditional highlighting and drill-friendly visuals
-- Financial analysis of payment-processing costs
+**4. Update for a new month** by adding the new statement rows to the source and
+clicking **Refresh**. A static copy of the report is in `Dashboard.pdf`.
 
----
+## Limitations
 
-## Notes / Known Issues
+- **The "Total YTD" row in the card table sums every period** in the data (about
+  $7.73M since October 2021), not 2024 only. Rename it or filter it to the current year.
+- **Expected 2024 values are projections,** not a statistically validated forecast.
+  Review the `ExpectedAmny24` and `ExpQTN24` measures before relying on them.
+- **The card table is not filtered to one year,** so it cannot be compared directly
+  with the YTD cards above it.
+- **Card-level detail starts in October 2021,** while the monthly summary starts in
+  January 2021, so card-type trends have a shorter history.
+- **Data view formatting uses Indian digit grouping** (for example `$1,74,500.94`).
+  Set the report locale to English for standard formatting.
+- **Merchant numbers are stored as numbers** and display in scientific notation.
+  Change the column type to Text.
 
-- The card table's **"Total YTD"** row sums all periods in the data (Oct 2021 onward, ~$7.73M), not just 2024 – consider renaming it to "Total" or filtering it to the current year.
-- Currency formatting in the data view uses Indian digit grouping (e.g. `$1,74,500.94`); set the report locale to English (US/UK) for standard `$174,500.94` formatting.
-- Merchant numbers in the source data are stored as numbers and display in scientific notation – change the type to Text.
-- **Privacy:** this is real business data. Before making the repo public, remove or anonymise merchant numbers and confirm you have permission to share the figures. Consider using a private repo.
+## Provenance & License
 
----
+**Source:** monthly card-processing statements from a restaurant business, taken from
+the author's work. Confirm that you have permission to share the figures, and remove or
+anonymise merchant numbers before making the repository public.
+
+**License:** not yet specified. Add a licence file before inviting reuse of the data.
+
+## Future Work
+
+- [ ] Add a card-mix view showing the share of keyed vs swiped volume over time
+- [ ] Add a fee-saving scenario that shifts keyed volume to swipe
+- [ ] Replace the expected-year projection with a validated forecast
+- [ ] Add a month selector so any month can be the reporting month
+- [ ] Publish a version to Power BI Service with scheduled refresh
 
 ## Author
 
-**<Your Name>** – [LinkedIn](https://linkedin.com/in/your-profile) · [GitHub](https://github.com/your-username)
+**Sanjib Samadder**
+
+**📬 Let's connect!** I'm open to discussions about data analytics, dashboards, and collaborative projects.
+
+[![Email](https://img.shields.io/badge/Email-skilled.sanjib%40gmail.com-red?logo=gmail)](mailto:skilled.sanjib@gmail.com)
+[![GitHub](https://img.shields.io/badge/GitHub-sanjibSamadder-181717?logo=github)](https://github.com/sanjibSamadder)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Sanjib%20Samadder-0A66C2?logo=linkedin)](https://linkedin.com/in/sanjib-samadder)
+
+**Happy Dashboarding!** 📊
+
+## Disclaimer
+
+This project is for educational and portfolio purposes only. Figures are taken from
+merchant statements and are not financial advice.
